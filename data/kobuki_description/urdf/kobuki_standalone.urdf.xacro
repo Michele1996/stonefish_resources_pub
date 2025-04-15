@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<robot name="kobuki" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="mobile_base_namespace" default="turtlebot" />
+  <xacro:include filename="$(find kobuki_description)/urdf/kobuki.urdf.xacro" />
+  <xacro:kobuki prefix="$(arg mobile_base_namespace)"/>
+</robot>
