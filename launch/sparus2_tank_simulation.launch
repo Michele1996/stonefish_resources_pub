@@ -83,15 +83,15 @@
 
     <!-- Run Simulator -->
     <include file="$(find stonefish_ros)/launch/simulator.launch">
-        <arg name="simulation_data" value="$(find cola2_stonefish)/data"/>
-        <arg name="scenario_description" value="$(find cola2_stonefish)/scenarios/sparus2_tank.scn"/>
+        <arg name="simulation_data" value="$(find stonefish_resources)/data"/>
+        <arg name="scenario_description" value="$(find stonefish_resources)/scenarios/sparus2_tank.scn"/>
         <arg name="simulation_rate" value="300.0"/>
         <arg name="graphics_resolution" value="1200 800"/>
         <arg name="graphics_quality" value="high"/>
     </include>
 
     <!-- Stonefish/COLA2 message translator -->
-    <node name="translator" pkg="cola2_stonefish" type="cola2_stonefish_node">
+    <node name="translator" pkg="stonefish_resources" type="stonefish_resources_node">
         <remap from="/translator/stonefish_dvl" to="/$(arg robot_name)/navigator/dvl_sim"/>
         <remap from="/translator/cola2_dvl" to="/$(arg robot_name)/navigator/dvl"/>
         <remap from="/translator/stonefish_thruster_setpoints" to="/$(arg robot_name)/controller/thruster_setpoints_sim"/>

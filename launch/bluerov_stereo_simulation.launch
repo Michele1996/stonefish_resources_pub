@@ -21,16 +21,16 @@
     <group ns="$(arg robot_name)">
         <!-- Run Simulator -->
         <include file="$(find stonefish_ros)/launch/simulator.launch">
-           <arg name="simulation_data" value="$(find cola2_stonefish)/data"/>
-            <arg name="scenario_description" value="$(find cola2_stonefish)/scenarios/bluerov_stereo_tank.scn"/>
+           <arg name="simulation_data" value="$(find stonefish_resources)/data"/>
+            <arg name="scenario_description" value="$(find stonefish_resources)/scenarios/bluerov_stereo_tank.scn"/>
             <arg name="simulation_rate" value="100.0"/>
            <arg name="graphics_resolution" value="1200 800"/>
             <arg name="graphics_quality" value="low"/> -->
         </include>
     </group>
-    <node name="odom2tf" pkg="cola2_stonefish" type="odom2tf.py" output="screen"/>
+    <node name="odom2tf" pkg="stonefish_resources" type="odom2tf.py" output="screen"/>
         <node name="joystick" pkg="joy" type="joy_node" output="screen"/>
-        <node name="logitech_controller" pkg="cola2_stonefish" type="logitechF310teleop.py" output="screen"/>
+        <node name="logitech_controller" pkg="stonefish_resources" type="logitechF310teleop.py" output="screen"/>
     
  <!-- Set parameters for camera1 -->
     <param name="camera1/Tx" type="double" value="0.16"/>
@@ -57,7 +57,7 @@
     <param name="debug_mode" type="bool" value="true"/>
 
     <!-- Launch your node -->
-    <!--<node name="stereo_camera_node" pkg="cola2_stonefish" type="stereo_camera_node"/>-->
+    <!--<node name="stereo_camera_node" pkg="stonefish_resources" type="stereo_camera_node"/>-->
     
 
 </launch>

@@ -94,7 +94,7 @@
         
         <!-- Load robot description -->
         <arg name="manipulator_name" default="eca_5emicro_manipulator"/>
-        <arg name="xacro_file" default="$(find cola2_stonefish)/urdf/girona500_eca5emicro.urdf.xarco"/>
+        <arg name="xacro_file" default="$(find stonefish_resources)/urdf/girona500_eca5emicro.urdf.xarco"/>
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg xacro_file)' robot_namespace:=$(arg robot_name) manipulator_namespace:=$(arg manipulator_name)"/>
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
             <remap from="joint_states" to="$(arg manipulator_name)/joint_states"/>
@@ -106,15 +106,15 @@
 
     <!-- Run Simulator -->
     <include file="$(find stonefish_ros)/launch/simulator.launch">
-        <arg name="simulation_data" value="$(find cola2_stonefish)/data"/>
-        <arg name="scenario_description" value="$(find cola2_stonefish)/scenarios/girona500_valve_turning.scn"/>
+        <arg name="simulation_data" value="$(find stonefish_resources)/data"/>
+        <arg name="scenario_description" value="$(find stonefish_resources)/scenarios/girona500_valve_turning.scn"/>
         <arg name="simulation_rate" value="300.0"/>
         <arg name="graphics_resolution" value="1200 800"/>
         <arg name="graphics_quality" value="high"/>
     </include>
 
     <!-- Stonefish/COLA2 message translator -->
-    <node name="translator" pkg="cola2_stonefish" type="cola2_stonefish_node">
+    <node name="translator" pkg="stonefish_resources" type="stonefish_resources_node">
         <remap from="/translator/stonefish_dvl" to="/$(arg robot_name)/navigator/dvl_sim"/>
         <remap from="/translator/cola2_dvl" to="/$(arg robot_name)/navigator/dvl"/>
         <remap from="/translator/stonefish_thruster_setpoints" to="/$(arg robot_name)/controller/thruster_setpoints_sim"/>
