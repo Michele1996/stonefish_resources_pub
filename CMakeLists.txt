@@ -5,7 +5,7 @@ project(stonefish_resources)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(stonefish_ros2 REQUIRED)  # Add this line
+find_package(stonefish_ros REQUIRED)  # Add this line
 
 # Include directories
 include_directories(
