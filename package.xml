@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>stonefish_resources</name>
+  <version>1.5.0</version>
+  <description>The cola2_stonefish package</description>
+  <maintainer email="patryk.cieslak@udg.edu">Patryk Cieslak</maintainer>
+  <license>GPL-3.0</license>
+
+  <!-- Build tool dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Build dependencies -->
+  <depend>rclcpp</depend>
+  <depend>stonefish_ros2</depend>
+  <depend>std_msgs</depend>
+
+  <!-- Execution dependencies -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+

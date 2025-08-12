@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<scenario>
+    <looks>
+        <look name="black" gray="0.05" roughness="0.2" metalness="0.0"/>
+    </looks>
+    
+    <looks>
+        <look name="gray" gray="1" roughness="0.2" metalness="0.0"/>
+    </looks>
+    
+        <looks>
+        <look name="transparent" gray="1.0" roughness="0.0" metalness="0.0"/>
+        <look name="blue" rgb="0.0 0.3 0.8" roughness="0.0"/>
+        <look name="yellow" rgb="0.0 0.8 0.8" roughness="0.0"/>
+    </looks>
+
+
+	<robot name="blueboat" fixed="true" self_collisions="false">
+		<base_link name="Vehicle" type="compound" physics="submerged">
+			<external_part name="SideR" type="model" physics="submerged" buoyant="false">
+				<physical>
+					<mesh filename="opti_blueboat/right_side_or.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+          			<thickness value="0.1"/>
+				</physical>
+				<material name="Polyamid"/>
+				<mass value="4"/>
+				<look name="blue"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			
+			<external_part name="SideL" type="model" physics="submerged" buoyant="false">
+				<physical>
+					<mesh filename="opti_blueboat/left_side_or.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+          			<thickness value="0.1"/>
+				</physical>
+				<material name="Polyamid"/>
+				<mass value="4"/>
+				<look name="blue"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="RightBack" type="model" physics="surface" buoyant="false">
+				<physical>
+					<mesh filename="opti_blueboat/right_rear_or.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+          			<thickness value="0.1"/>
+				</physical>
+				<material name="Polyamid"/>
+				<mass value="0.05"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="LeftBack" type="model" physics="surface" buoyant="false">
+				<physical>
+					<mesh filename="opti_blueboat/left_rear_or.obj" scale="1.0"/>
+					<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+          			<thickness value="0.1"/>
+				</physical>
+				<material name="Polyamid"/>
+				<look name="black"/>
+				<mass value="0.05"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			
+			<external_part name="MetalRear" type="box" physics="surface" buoyant="false">
+				<dimensions xyz="0.55 0.025 0.025"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.025 -0.26 -0.215"/>
+				<material name="Polyamid"/>
+				<mass value="2"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 -1.571" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="MetalFront" type="box" physics="surface" buoyant="false">
+				<dimensions xyz="0.55 0.025 0.025"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.025 0.32 -0.215"/>
+				<material name="Polyamid"/>
+				<mass value="2"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 -1.571" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+			<external_part name="LeftSideBox" type="box" physics="surface" buoyant="false">
+				<dimensions xyz="0.42 0.128 0.025"/>
+				<origin rpy="0.0 0.0 1.57" xyz="0.3725 0.025 -0.225"/>
+				<material name="Polyamid"/>
+				<mass value="0.5"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 -1.571" xyz="0.0 0.0 0.0"/>
+			</external_part>			
+
+			<external_part name="RightSideBox" type="box" physics="surface" buoyant="false">
+				<dimensions xyz="0.42 0.128 0.025"/>
+				<origin rpy="0.0 0.0 1.57" xyz="-0.3325 0.025 -0.225"/>
+				<material name="Polyamid"/>
+				<mass value="0.5"/>
+				<look name="black"/>
+				<compound_transform rpy="0.0 0.0 -1.571" xyz="0.0 0.0 0.0"/>
+			</external_part>
+
+
+			<internal_part name="BatteryCylinder" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.08" height="0.7"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Neutral"/>
+				<mass value=".5"/>
+				<look name="manipulator"/>
+				<compound_transform rpy="0.0 1.571 0.0" xyz="0.0 -0.3 -0.1"/>
+			</internal_part> 
+
+			<internal_part name="BatteryCylinder" type="cylinder" physics="submerged" buoyant="true">
+				<dimensions radius="0.08" height="0.7"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Neutral"/>
+				<mass value=".5"/>
+				<look name="manipulator"/>
+				<compound_transform rpy="0.0 1.571 0.0" xyz="0.0 0.22 -0.1"/>
+			</internal_part> 
+
+		</base_link>
+
+		<actuator name="Thruster_R" type="thruster">
+		  <origin rpy="1.57 0.0 0.0" xyz="-0.472 0.26 0.0245"/>
+			<specs thrust_coeff="0.3" torque_coeff="0.01" max_rpm="2800.0" inverted="false"/>
+			<propeller diameter="0.112" right="false">
+				<mesh filename="opti_blueboat/propeller2.obj" scale="1"/>
+				<material name="Neutral"/>
+				<look name="yellow"/>
+			</propeller>
+			<link name="Vehicle"/>
+		</actuator>
+
+		<actuator name="Thruster_L" type="thruster">
+		  <origin rpy="0.0 0.0 0.07" xyz="-0.472 -0.3 0.0245"/>
+			<specs thrust_coeff="0.3" torque_coeff="0.01" max_rpm="2800.0" inverted="false"/>
+			<propeller diameter="0.112" right="true">
+				<mesh filename="opti_blueboat/propeller_cc.obj" scale="1"/>
+				<material name="Neutral"/>
+				<look name="yellow"/>
+			</propeller>
+			<link name="Vehicle"/>
+		</actuator>
+
+		<!-- Links Alpha -->
+				
+                <link name="m3_inline" type="compound" physics="submerged">
+                	<external_part name="m3_inline_1" type="model" physics="submerged"
+				buoyant="true">
+			<physical>
+				<mesh filename="alpha/m3_inline.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/m3_inline.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Neutral"/>
+			<look name="black"/>
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>	
+		</link>
+
+                <link name="m2" type="compound" physics="submerged">
+                	<external_part name="m2_1" type="model" physics="submerged"
+				buoyant="true">                        
+			<physical>
+				<mesh filename="alpha/m2_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/m2_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Neutral"/>
+			<mass value="0.3"/>
+			<look name="black"/>	
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>
+
+                <link name="m2_1_1" type="compound" physics="submerged">
+                	<external_part name="m2_1_1_1" type="model" physics="submerged"
+				buoyant="true">  			
+			<physical>
+				<mesh filename="alpha/m2_1_1_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/m2_1_1_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Neutral"/>
+			<look name="black"/>	
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>			
+		</link>
+		
+		
+                <link name="m2_1_3" type="compound" physics="submerged">
+                	<external_part name="m2_1_3_1" type="model" physics="submerged"
+				buoyant="true"> 
+			<physical>
+				<mesh filename="alpha/m2_1_3_fin.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/m2_1_3_fin.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Neutral"/>
+			<look name="black"/>	
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>
+
+
+                <link name="rs1" type="compound" physics="submerged">
+                	<external_part name="rs1_1" type="model" physics="submerged"
+				buoyant="true"> 
+			<physical>
+				<mesh filename="alpha/rs1_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/rs1_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Neutral"/>
+			<look name="black"/>	
+			<mass value="0.1"/>
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>
+
+               <link name="rs1_124" type="compound" physics="submerged">
+                	<external_part name="rs1_124_1" type="model" physics="submerged"
+				buoyant="true"> 
+			<physical>
+				<mesh filename="alpha/rs1_124_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</physical>
+			<visual>
+				<mesh filename="alpha/rs1_124_v2.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</visual>
+			<material name="Polyamid"/>
+			<look name="gray"/>	
+			<mass value="0.0005"/>
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>
+				
+
+               <link name="rs1_130" type="compound" physics="submerged">
+                	<external_part name="rs1_130_1" type="model" physics="submerged"
+				buoyant="true"> 
+			<physical>
+				<mesh filename="alpha/rs1_130_fin_v3.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0075 0.0 0.0"/>
+			</physical>
+			<material name="Polyamid"/>
+			<look name="gray"/>	
+			<mass value="0.0001"/>
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>	
+		
+		
+                <link name="rs1_139" type="compound" physics="submerged">
+                	<external_part name="rs1_139_1" type="model" physics="submerged"
+				buoyant="true"> 
+			<physical>
+				<mesh filename="alpha/rs1_139_fin_v3.obj" scale="1.0"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0075 0.0 0.0"/>
+			</physical>
+			<material name="Polyamid"/>
+			<look name="gray"/>	
+			<mass value="0.0001"/>
+			<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+		</link>	
+		
+		<joint name="VehicleToArm" type="fixed">
+			<parent name="Vehicle"/>
+			<child name="m3_inline"/>
+			<origin rpy="3.14 0.0 0" xyz="0.3 0.0 -0.3"/>
+		</joint>
+
+		<joint name="alpha_axis_e" type="revolute">
+			<parent name="m3_inline"/>
+			<child name="m2_1_1"/>
+			<origin rpy="3.14 0.0 0.0" xyz="0.120683 -0.021096 -0.025"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limits min="-1" max="1"/>
+		</joint>
+		
+		<joint name="alpha_axis_d" type="revolute">
+			<parent name="m2_1_1"/>
+			<child name="m2"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.023 0.0 0.033"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-1.58" max="1.58"/>
+		</joint>
+		
+
+		<joint name="alpha_axis_c" type="revolute">
+			<parent name="m2"/>
+			<child name="m2_1_3"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.13 -0.015 0.08"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-3.15" max="3.15"/> 
+		</joint>
+		
+		<joint name="alpha_axis_b" type="revolute">
+			<parent name="m2_1_3"/>
+			<child name="rs1"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.031 0.0165 -0.0225"/>
+			<axis xyz="1.0 0.0 0.0"/>
+			<limits min="0" max="3"/>
+		</joint>
+
+		<joint name="joint3.2" type="fixed">
+			<parent name="rs1"/>
+			<child name="rs1_124"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.1025 0.0 0.0"/>
+		</joint>
+		
+		<joint name="alpha_axis_a1" type="revolute">
+			<parent name="rs1_124"/>
+			<child name="rs1_130"/>
+			<origin rpy="3.14 0.0 0.0" xyz="0.0 0.0 -0.0"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-1.2" max="1.2"/>
+		</joint>
+	
+		<joint name="alpha_axis_a2" type="revolute">
+			<parent name="rs1_124"/>
+			<child name="rs1_139"/>
+			<origin rpy="3.14 0.0 0.0" xyz="0.0 0.0 0.00"/>
+			<axis xyz="0.0 1.0 0.0"/>
+			<limits min="-1.2" max="1.2"/>
+		</joint>
+
+	        <!--   ARM SERVOS   -->		        
+		<actuator name="Servo1" type="servo">
+			<joint name="alpha_axis_e"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+			<initial position="0.0"/>
+		</actuator> 
+		
+		<actuator name="Servo2" type="servo">
+			<joint name="alpha_axis_d"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+			<initial position="1.0"/>
+		</actuator> 
+		
+		<actuator name="Servo3" type="servo">
+			<joint name="alpha_axis_c"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+			<initial position="-1.5"/>
+		</actuator> 
+		
+		<actuator name="Servo4" type="servo">
+			<joint name="alpha_axis_b"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
+			<initial position="1.57"/>
+		</actuator> 
+		
+		<actuator name="Servo5.1" type="servo">
+			<joint name="alpha_axis_a1"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="100.0"/>
+			<initial position="-0.5"/>
+		</actuator> 
+
+		<actuator name="Servo5.2" type="servo">
+			<joint name="alpha_axis_a2"/>
+			<controller position_gain="1.0" velocity_gain="1.0" max_torque="100.0"/>
+			<initial position="0.5"/>
+		</actuator> 
+		
+		<sensor name="Cam" rate="10.0" type="camera">
+			<specs resolution_x="800" resolution_y="600" horizontal_fov="80.0"/>
+			<origin xyz="0.3 0.0 -0.6" rpy="-0.87 0.0 -1.57"/>
+			<link name="Vehicle"/>
+			<ros_publisher topic="/blueboat/camera_RGB"/>
+		</sensor>
+
+		<sensor name="Dcam" rate="10.0" type="depthcamera">
+			<specs resolution_x="800" resolution_y="600" horizontal_fov="80.0" depth_min="0.3" depth_max="6.0"/>
+			<noise depth="0.01"/>
+			<origin xyz="0.3 0.0 -0.6" rpy="-0.87 0.0 -1.57"/>
+			<link name="Vehicle"/>
+			<ros_publisher topic="/blueboat/camera_depth"/>
+		</sensor>
+
+		<sensor name="dvl" type="dvl" rate="5.0">
+			<link name="Vehicle"/>
+			<origin rpy="3.1416 0.0 -0.785" xyz="-0.75 0.0 0.4"/>
+			<specs beam_angle="30.0"/>
+			<range velocity="9.0 9.0 9.0" altitude_min="0.5" altitude_max="81.0"/>
+			<noise velocity="0.0015" altitude="0.001"/>
+			<ros_publisher topic="/blueboat/navigator/dvl_sim" altitude_topic="/bluebloat/navigator/altitude"/>
+		</sensor>
+
+		<sensor name="imu_filter" type="imu" rate="20.0">
+			<link name="Vehicle"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.35 -0.35 -0.2"/>
+			<noise angle="0.000001745" angular_velocity="0.00001745"/>
+			<ros_publisher topic="/blueboat/navigator/imu"/>
+		</sensor>
+
+		<sensor name="gps" type="gps" rate="1.0">
+			<link name="Vehicle"/>
+			<origin rpy="0.0 0.0 0.0" xyz="-0.35 0.15 -0.35"/>
+			<noise ned_position="0.5"/>
+			<ros_publisher topic="/blueboat/navigator/gps"/>
+		</sensor>
+
+		<sensor name="INS" rate="100.0" type="ins">
+			<output_frame rpy="0.0 0.0 0.0" xyz="-0.2 -0.4 0.3"/>
+			<noise angular_velocity="0.00001745" linear_acceleration="0.00005"/>
+			<external_sensors dvl="dvl" gps="gps" pressure="pressure"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<link name="Vehicle"/>
+			<ros_publisher topic="/blueboat/navigator/ins"/>
+		</sensor>
+
+		<sensor name="Odometry" rate="10.0" type="odometry">
+			<noise position="0.0005" velocity="0.01" angle="0.01" angular_velocity="0.05"/>
+			<history samples="1"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<link name="Vehicle"/>
+			<ros_publisher topic="/blueboat/navigator/odom"/>
+		</sensor>
+
+<!--
+		<sensor name="camera_front" type="camera" rate="13.0">
+			<link name="Vehicle"/>
+			<origin rpy="1.2 0.0 1.571" xyz="0.45 0.0 -0.1"/>
+			<specs resolution_x="1360" resolution_y="1024" horizontal_fov="55.0"/>
+			<ros_publisher topic="/girona500/camera_front"/>
+		</sensor>
+-->
+
+
+		<world_transform rpy="0.0 0.0 0.0" xyz="0 0 0.1"/>
+		
+
+		<ros_subscriber thrusters="/blueboat/controller/thruster_setpoints_sim" servos="/blueboat/alpha/desired_joint_states"/>
+		<ros_publisher thrusters="/blueboat/controller/thruster_state" servos="/blueboat/alpha/joint_states"/>
+		<ros_base_link_transforms publish="true"/>
+
+	</robot>
+</scenario>

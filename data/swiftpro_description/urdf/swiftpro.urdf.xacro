@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<robot name="swiftpro" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:macro name="swiftpro" params="prefix">
+		<link name="${prefix}/manipulator_base_link">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/base.dae"/>
+				</geometry>
+				<origin xyz = "0 0 0 " rpy = "0 0 0"/>
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link1">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link1.dae"/>
+				</geometry>
+				<origin xyz = "0 0 0" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link2">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link2.dae"/>
+				</geometry>
+				<origin xyz = "-0.0133 0 0.1056" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link3">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link3.dae"/>
+				</geometry>
+				<origin xyz="-0.0133 0 0.2476"/>
+				<material name="">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link4">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link4.dae"/>
+				</geometry>
+				<origin xyz = "-0.0133 0 0.2476" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link5">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link5.dae"/>
+				</geometry>
+				<origin xyz = "0.0214 0 0.1223" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link6">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link6.dae"/>
+				</geometry>
+				<origin xyz = "-0.0133 0 0.1056" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link7">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link7.dae"/>
+				</geometry>
+				<origin xyz = "0.0322 0 0.1026" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link8A">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/suction_a.dae"/>
+				</geometry>
+				<origin xyz = "-0.172 0 0.2476" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link8B">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/suction_b.dae"/>
+				</geometry>
+				<origin xyz = "-0.2285 0 0.2476" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<link name="${prefix}/link9">
+			<visual>
+				<geometry>
+					<mesh filename="package://swiftpro_description/resources/meshes/link9.dae"/>
+				</geometry>
+				<origin xyz = "-0.1994 0 0.2746" rpy = "0 0 0" />
+				<material name = "">
+					<color rgba = "0.3 0.3 0.3 1" />
+				</material>
+			</visual>
+		</link>
+
+		<joint name="${prefix}/joint1" type="revolute">
+			<axis xyz="0 0 1"/>
+			<limit effort = "1000.0" lower = "-1.571" upper = "1.571" velocity = "0.2" />
+			<parent link="${prefix}/manipulator_base_link"/>
+			<child link="${prefix}/link1"/>
+			<origin xyz= "0 0 0" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/joint2" type="revolute">
+			<axis xyz="0 1 0"/>
+			<limit effort = "1000.0" lower = "-1.571" upper = "0.05" velocity = "0.2" />
+			<parent link="${prefix}/link1"/>
+			<child link="${prefix}/link2"/>
+			<origin xyz= "0.0133 0 -0.1056" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/passive_joint1" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link2" />
+			<child link="${prefix}/link3" />
+			<origin xyz="0 0 -0.142 " rpy="0 0 0"/>
+		</joint>
+
+		<joint name="${prefix}/passive_joint2" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link2"/>
+			<child link="${prefix}/link4"/>
+			<origin xyz= "0 0 -0.142" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/passive_joint3" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link1"/>
+			<child link="${prefix}/link5"/>
+			<origin xyz= "-0.0214 0 -0.1223" rpy = "0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/joint3" type="revolute">
+			<axis xyz="0 1 0"/>
+			<limit effort = "1000.0" lower = "-1.571" upper = "0.05" velocity = "0.2" />
+			<parent link="${prefix}/link1"/>
+			<child link="${prefix}/link6"/>
+			<origin xyz= "0.0133 0 -0.1056" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/passive_joint5" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link6"/>
+			<child link="${prefix}/link7"/>
+			<origin xyz= "-0.0455 0 0.003" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/passive_joint7" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link3"/>
+			<child link="${prefix}/link8A"/>
+			<origin xyz= "0.1587 0 0" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/joint4" type="revolute">
+			<axis xyz="0 0 1"/>
+			<limit effort = "1000.0" lower = "-1.571" upper = "1.571" velocity = "0.2" />
+			<parent link="${prefix}/link8A"/>
+			<child link="${prefix}/link8B"/>
+			<origin xyz= "0.0565 0 0.0" rpy = " 0 0 0" />
+		</joint>
+
+		<joint name="${prefix}/passive_joint8" type="continuous">
+			<axis xyz="0 1 0"/>
+			<parent link="${prefix}/link8A"/>
+			<child link="${prefix}/link9"/>
+			<origin xyz= "0.0274 0 -0.027" rpy = " 0 0 0" />
+		</joint>
+	</xacro:macro>
+</robot>
