@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<robot name="swiftpro" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="manipulator_namespace" default="swiftpro" />
+  <xacro:include filename="$(find swiftpro_description)/urdf/swiftpro.urdf.xacro" />
+  <xacro:swiftpro prefix="$(arg manipulator_namespace)"/>
+</robot>

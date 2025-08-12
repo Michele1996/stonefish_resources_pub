@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<robot name="kobuki" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Kobuki -->
+  <xacro:macro name="kobuki" params="prefix">
+    <link name="${prefix}/base_footprint"></link>
+
+    <link name="${prefix}/base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://kobuki_description/resources/meshes/main_body.dae" />
+        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      </visual>
+    </link>
+
+    <link name="${prefix}/wheel_left_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://kobuki_description/resources/meshes/wheel.dae" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      </visual>
+    </link>
+
+    <link name="${prefix}/wheel_right_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://kobuki_description/resources/meshes/wheel.dae" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      </visual>
+    </link>
+
+    <link name="${prefix}/plates_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://kobuki_description/resources/meshes/plates.dae" />
+        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      </visual>
+    </link>
+
+    <joint name="base_footprint_to_base_joint" type="fixed">
+      <origin xyz="0.014 0 -0.198" rpy="0 0 0" />
+      <parent link="${prefix}/base_footprint" />
+      <child link="${prefix}/base_link" />
+    </joint>
+
+    <joint name="base_to_plates_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/plates_link" />
+    </joint>
+
+    <joint name="${prefix}/wheel_left_joint" type="continuous">
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/wheel_left_link" />
+      <origin xyz="-0.014 -0.115 0.163" rpy="0 0 3.14159" />
+      <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="${prefix}/wheel_right_joint" type="continuous">
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/wheel_right_link" />
+      <origin xyz="-0.014 0.115 0.163" rpy="0 0 3.14159" />
+      <axis xyz="0 1 0" />
+    </joint>
+  
+    <!-- Kobuki's sensors -->
+    <joint name="${prefix}/imu_joint" type="fixed">
+      <axis xyz="0 1 0" />
+      <origin xyz="0.056 0.062 0.163" rpy="3.14159 0 0" />
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/imu" />
+    </joint>
+    
+    <link name="${prefix}/imu"/>
+
+    <joint name="${prefix}/cliff_sensor_left_joint" type="fixed">
+      <origin xyz="0.07034 0.13601 0.1714" rpy="0 1.57 0" />
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/cliff_sensor_left_link" />
+    </joint>
+
+    <link name="${prefix}/cliff_sensor_left_link"/>
+
+    <joint name="${prefix}/cliff_sensor_right_joint" type="fixed">
+      <origin xyz="0.07034 -0.13601 0.1714" rpy="0 1.57 0" />
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/cliff_sensor_right_link" />
+    </joint>
+    
+    <link name="${prefix}/cliff_sensor_right_link"/>
+
+    <joint name="${prefix}/cliff_sensor_front_joint" type="fixed">
+      <origin xyz="0.139 0.00 0.1714" rpy="0 1.57 0" />
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/cliff_sensor_front_link" />
+    </joint>
+    
+    <link name="${prefix}/cliff_sensor_front_link"/>
+
+    <link name="${prefix}/rplidar">
+      <visual>
+        <geometry>
+          <mesh filename="package://kobuki_description/resources/meshes/rplidar.dae" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}/rplidar_joint" type="fixed">
+      <origin xyz="-0.02 0.0 0.01918" rpy="0 0 0" />
+      <parent link="${prefix}/plates_link" />
+      <child link="${prefix}/rplidar" />
+    </joint>
+
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
+    <xacro:sensor_d435i parent="${prefix}/plates_link" use_nominal_extrinsics="true">
+        <origin xyz="0.1115 0 0.0945" rpy="3.14159 0 0"/>
+    </xacro:sensor_d435i>
+  </xacro:macro>
+</robot>
