@@ -41,7 +41,7 @@
 			texture="wind_turbine/BaseColor.png"/>
 	</looks>
 
-	<static name="Tank" type="model">
+	<!-- <static name="Tank" type="model">
 		<physical>
 			<mesh filename="cirs_tank.obj" scale="1.0"/>
 			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
@@ -49,9 +49,10 @@
 		<material name="Rock"/>
 		<look name="tank"/>
 		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-	</static>
+	</static> -->
 
-<include file="$(find cola2_stonefish)/scenarios/bluerov2_heavy.scn">
-		<arg name="position" value="0.0 0.0 0.0"/>
+	<include file="$(find stonefish_resources)/scenarios/bluerov2_heavy.scn">
+		<arg name="position" value="0.0 0.0 50.0"/>
+		<arg name="orientation" value="0.0 0.0 0.0"/>
 	</include>
 </scenario>

@@ -1,8 +1,8 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import PointCloud2
-from cola2_stonefish_interfaces.srv import Cluster, ClusterResponse
-from cola2_stonefish_interfaces.msg import ClusterObjInfo
+from stonefish_resourcesrces_interfaces.srv import Cluster, ClusterResponse
+from stonefish_resources_interfaces.msg import ClusterObjInfo
 import sensor_msgs_py.point_cloud2 as pc2
 import numpy as np
 from sklearn.cluster import KMeans

@@ -49,7 +49,7 @@
 		<world_transform rpy="0.0 0.0 1.6" xyz="0.0 -30.0 30.0"/>
 	</static>
 	
-	<include file="$(find cola2_stonefish)/scenarios/bluerov2_unphy.scn">
+	<include file="$(find stonefish_resources)/scenarios/bluerov2_unphy.scn">
 		<arg name="position" value="0.0 0.0 0.0"/>
 	</include>
 </scenario>
