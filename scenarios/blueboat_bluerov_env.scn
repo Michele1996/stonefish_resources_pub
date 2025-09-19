@@ -35,7 +35,7 @@
 
 
 
-	<include file="$(find cola2_stonefish)/scenarios/blueboat_bluerov.scn">
+	<include file="$(find stonefish_resources)/scenarios/blueboat_bluerov.scn">
 		<arg name="position" value="0.0 0.0 1.0"/>
 	</include>
 </scenario>

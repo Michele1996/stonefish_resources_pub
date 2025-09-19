@@ -618,7 +618,7 @@
 		<world_transform rpy="0.0 0.0 0.0" xyz="5.0 1.2 0.0"/>
 	</static>
 
-        <include file="$(find cola2_stonefish)/scenarios/turtlebot_featherstone.scn">
+        <include file="$(find stonefish_resources)/scenarios/turtlebot_featherstone.scn">
 		<arg name="robot_name" value="turtlebot"/>
 		<arg name="start_position" value="3.0 -0.78 -0.2"/>
 		<arg name="start_yaw" value="${pi/2.0}"/>

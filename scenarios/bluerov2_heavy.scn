@@ -593,7 +593,7 @@
 			<ros_publisher topic="/bluerov/camera"/>
 		</sensor>
 
-		<world_transform rpy="0.0 0.0 0.0" xyz="0 0 0.25"/>
+		<world_transform rpy="$(arg orientation)" xyz="$(arg position)"/>
 
 		<!--   ROS SUBSCRIBERS / PUBLISHER THRUST/FORCES   -->
 		<ros_subscriber thrusters="/bluerov/controller/thruster_setpoints_sim" forces="/bluerov/controller/thruster_manager/input_stamped"/>
